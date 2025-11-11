@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
+        vendor = JvmVendorSpec.AMAZON
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    testCompileOnly {
+        extendsFrom compileOnly
+    }
+    annotationProcessor {
+        extendsFrom implementation
+    }
+    testAnnotationProcessor {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${libs.versions.spring.boot.get()}")
+
+    // Lombok
+    compileOnly libs.lombok
+    testCompileOnly libs.lombok
+    annotationProcessor libs.lombok
+    testAnnotationProcessor libs.lombok
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}

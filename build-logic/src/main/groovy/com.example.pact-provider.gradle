@@ -1,0 +1,9 @@
+plugins {
+    id 'com.example.pact'
+}
+
+dependencies {
+    contractImplementation libs.pact.provider
+    contractImplementation libs.kotlin.stdlib
+    contractImplementation libs.kotlin.logging
+}

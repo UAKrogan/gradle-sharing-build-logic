@@ -1,0 +1,12 @@
+plugins {
+    id 'com.example.spring-boot-reactive-app'
+
+    alias(libs.plugins.pact)
+    id 'com.example.pact-consumer'
+    id 'com.example.pact-provider'
+}
+
+description = 'Service'
+
+dependencies {
+}

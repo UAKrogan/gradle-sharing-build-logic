@@ -1,0 +1,17 @@
+pact {
+    broker {
+        pactBrokerUrl = System.getenv("PACTBROKER_URL")
+        pactBrokerToken = System.getenv("PACTBROKER_AUTH_TOKEN")
+    }
+    publish {
+        pactDirectory = "$layout.buildDirectory/pacts"
+
+        pactBrokerUrl = System.getenv("PACTBROKER_URL")
+        pactBrokerToken = System.getenv("PACTBROKER_AUTH_TOKEN")
+
+        consumerBranch = System.getenv("PACT_CONSUMER_BRANCH")
+        consumerVersion = System.getenv("PACT_CONSUMER_VERSION")
+
+        tags = System.getenv("PACT_CONSUMER_TAGS")?.split(",")?.toList() ?: []
+    }
+}

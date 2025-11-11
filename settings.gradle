@@ -1,0 +1,25 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'gradle-sharing-build-logic'
+
+includeBuild("build-logic")
+
+include 'service'
+
+//include 'shared:service-api-dto'
+//include 'shared:service-api-models'
+//include 'shared:other-service-client'

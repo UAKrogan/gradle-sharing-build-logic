@@ -1,0 +1,79 @@
+plugins {
+    id 'com.example.spring-boot'
+}
+
+sourceSets {
+    integration {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/integration/java')
+        }
+        resources {
+            srcDir 'src/integration/resources'
+            srcDir 'src/test/resources'
+        }
+    }
+
+    contract {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/contract/java')
+        }
+        resources {
+            srcDir 'src/contract/resources'
+            srcDir 'src/test/resources'
+        }
+    }
+}
+
+configurations {
+    // integration tests
+    integrationImplementation.extendsFrom testImplementation
+    integrationRuntime.extendsFrom testRuntime
+    integrationCompileOnly.extendsFrom testCompileOnly
+    integrationAnnotationProcessor.extendsFrom testAnnotationProcessor
+
+    // contract tests
+    contractImplementation.extendsFrom testImplementation
+    contractRuntime.extendsFrom testRuntime
+    contractCompileOnly.extendsFrom testCompileOnly
+    contractAnnotationProcessor.extendsFrom testAnnotationProcessor
+}
+
+dependencies {
+    implementation libs.spring.boot.starter.webflux
+    implementation libs.spring.boot.starter.actuator
+    implementation libs.spring.boot.starter.validation
+
+    testImplementation libs.spring.boot.starter.test
+}
+
+tasks.register('integrationTest', Test) {
+    group = 'verification'
+    description = 'Runs integration tests.'
+
+    testClassesDirs = sourceSets.integration.output.classesDirs
+    classpath = sourceSets.integration.runtimeClasspath
+}
+
+tasks.named("processIntegrationResources") {
+    duplicatesStrategy = DuplicatesStrategy.FAIL
+}
+
+tasks.register('contractTest', Test) {
+    group = 'verification'
+    description = 'Runs contract tests.'
+
+    testClassesDirs = sourceSets.contract.output.classesDirs
+    classpath = sourceSets.contract.runtimeClasspath
+}
+
+tasks.named("processContractResources") {
+    duplicatesStrategy = DuplicatesStrategy.FAIL
+}
+
+tasks.named("check") {
+    dependsOn 'integrationTest', 'contractTest'
+}

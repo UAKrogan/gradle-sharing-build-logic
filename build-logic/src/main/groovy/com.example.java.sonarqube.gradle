@@ -1,0 +1,43 @@
+plugins {
+    id 'com.example.java'
+    id 'org.sonarqube'
+}
+
+sonarqube {
+    properties {
+        // -------------------------
+        //  Server Configuration
+        // -------------------------
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.token", "squ_5b993fdf93c167a650787f7f4157635c4f7f349e"
+        property "sonar.projectKey", "project-key"
+        property "sonar.projectName", "Project Name"
+        property "sonar.projectVersion", "1.0.0"
+        // -------------------------
+        //  Language & Encoding
+        // -------------------------
+        property "sonar.sourceEncoding", "UTF-8"
+        // -------------------------
+        //  Source Directories
+        // -------------------------
+        property "sonar.sources", "src/main/java"
+        property "sonar.tests", "src/test/java"
+        property "sonar.inclusions", "**/*.java,**/*.kt"
+        property "sonar.exclusions", "**/build/**,**/generated/**,**/resources/**"
+        // -------------------------
+        //  Test & Coverage
+        // -------------------------
+        property "sonar.junit.reportPaths", "**/build/test-results/test"
+        property "sonar.coverage.jacoco.xmlReportPaths", "**/build/reports/jacoco/test/jacocoTestReport.xml"
+        // -------------------------
+        //  Logs & Output
+        // -------------------------
+        property "sonar.verbose", "true"
+        property "sonar.projectBaseDir", project.projectDir.absolutePath
+    }
+}
+
+tasks.matching { it.name.startsWith('sonar') || it.name.contains('Sonar') }.configureEach {
+    group = 'verification'
+    description = "Runs SonarQube analysis task: ${it.name}"
+}

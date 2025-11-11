@@ -1,0 +1,40 @@
+plugins {
+    id 'com.example.spring-boot'
+}
+
+sourceSets {
+    integration {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/integration/java')
+        }
+        resources {
+            srcDir 'src/integration/resources'
+            srcDir 'src/test/resources'
+        }
+    }
+}
+
+configurations {
+    // integration tests
+    integrationImplementation.extendsFrom testImplementation
+    integrationRuntime.extendsFrom testRuntime
+    integrationCompileOnly.extendsFrom testCompileOnly
+    integrationAnnotationProcessor.extendsFrom testAnnotationProcessor
+}
+
+dependencies {
+}
+
+tasks.register('integrationTest', Test) {
+    group = 'verification'
+    description = 'Runs integration tests.'
+
+    testClassesDirs = sourceSets.integration.output.classesDirs
+    classpath = sourceSets.integration.runtimeClasspath
+}
+
+tasks.named("processIntegrationResources") {
+    duplicatesStrategy = DuplicatesStrategy.FAIL
+}

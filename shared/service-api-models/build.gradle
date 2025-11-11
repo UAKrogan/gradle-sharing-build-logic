@@ -1,0 +1,8 @@
+plugins {
+    id 'com.example.spring-boot-reactive-common'
+}
+
+description = 'Service domain models'
+
+dependencies {
+}

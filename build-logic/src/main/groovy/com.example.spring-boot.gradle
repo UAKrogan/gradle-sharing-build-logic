@@ -1,0 +1,18 @@
+plugins {
+    id 'com.example.java'
+    id 'com.example.java.jacoco'
+    id 'com.example.java.checkstyle'
+    id 'com.example.java.sonarqube'
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    implementation libs.spring.boot.starter.only
+    annotationProcessor libs.spring.boot.configuration.processor
+
+    testImplementation libs.spring.boot.starter.test
+}
+
+jar {
+    enabled = false
+}

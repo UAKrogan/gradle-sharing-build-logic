@@ -1,0 +1,41 @@
+[versions]
+java = "17"
+spring-boot = "2.7.18"
+spring-cloud = "2023.0.4"
+jacoco = "0.8.13"
+checkstyle = "11.0.1"
+sonarqube = "6.3.1.5724"
+
+## Contract test (Pact & Kotlin)
+pact-junit5-version = "4.6.17"
+kotlin-stdlib-version = "1.9.0"
+kotlin-logging-version = "5.1.0"
+
+## Component tests
+allure-plugin-version = "2.11.2"
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+
+pact = { id = "au.com.dius.pact", version.ref = "pact-junit5-version" }
+allure = { id = "io.qameta.allure", version.ref = "allure-plugin-version" }
+
+[libraries]
+## Spring Boot
+spring-boot-starter-only = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring-boot" }
+spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
+spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "spring-boot" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring-boot" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+
+## Lombok
+lombok = { module = "org.projectlombok:lombok" }
+#lombok-only = { module = "org.projectlombok:lombok", version.ref = "lombok-version" }
+#lombok-mapstruct = { module = "org.projectlombok:lombok-mapstruct-binding", version.ref = "lombok-mapstruct-version" }
+
+## Contract tests (Pact libraries)
+pact-consumer = { module = "au.com.dius.pact.consumer:junit5", version.ref = "pact-junit5-version" }
+pact-provider = { module = "au.com.dius.pact.provider:junit5", version.ref = "pact-junit5-version" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin-stdlib-version" }
+kotlin-logging = { module = "io.github.oshai:kotlin-logging", version.ref = "kotlin-logging-version" }

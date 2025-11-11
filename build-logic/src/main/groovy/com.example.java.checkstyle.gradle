@@ -1,0 +1,26 @@
+plugins {
+    id 'com.example.java'
+    id 'checkstyle'
+}
+
+checkstyle {
+    toolVersion = libs.versions.checkstyle.get()
+    configProperties = [
+            "checkstyle.cache.file": "${layout.buildDirectory.get().asFile}/checkstyle.cache"
+    ]
+    ignoreFailures = false
+    showViolations = true
+    maxWarnings = 3
+}
+
+tasks.withType(Checkstyle).configureEach {
+    reports {
+        xml.required.set(false)
+        html.required.set(false)
+    }
+}
+
+tasks.matching { it.name.startsWith("checkstyle") }.configureEach {
+    group = 'checkstyle'
+    description = "Runs Checkstyle for ${it.name - 'checkstyle'} sources"
+}
