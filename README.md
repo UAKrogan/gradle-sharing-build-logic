@@ -26,7 +26,7 @@ gradle-sharing-build-logic/
 ## 🚀 Features
 
 ### Build Logic Plugins
-- **Java Base Configuration** (`com.example.java`) - Java 17 with Amazon Corretto
+- **Java Base Configuration** (`com.example.java`) - Java 21 with Amazon Corretto
 - **Spring Boot Setup** (`com.example.spring-boot`) - Base Spring Boot configuration
 - **Reactive Applications** (`com.example.spring-boot-reactive-app`) - WebFlux setup with multiple test types
 - **Code Quality** - Checkstyle, JaCoCo, SonarQube integration
@@ -45,9 +45,9 @@ gradle-sharing-build-logic/
 
 ## 🛠️ Technology Stack
 
-- **Java**: 17 (Amazon Corretto)
-- **Spring Boot**: 2.7.18
-- **Spring Cloud**: 2023.0.4
+- **Java**: 21 (Amazon Corretto)
+- **Spring Boot**: 3.5.10
+- **Spring Cloud**: 2025.0.0
 - **Build Tool**: Gradle 8.14.3
 - **Testing**: JUnit 5, Pact 4.6.17
 - **Code Quality**: Checkstyle 11.0.1, JaCoCo 0.8.13, SonarQube 6.3.1.5724
@@ -55,7 +55,7 @@ gradle-sharing-build-logic/
 ## 🏃‍♂️ Getting Started
 
 ### Prerequisites
-- Java 17 or higher
+- Java 21 or higher
 - Docker and Docker Compose (for SonarQube)
 
 ### Build and Run
